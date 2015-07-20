@@ -10,10 +10,12 @@ import Foundation
 
 extension String {
     func MD5() -> String? {
-        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)?.MD5().hexString()
+//        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)?.MD5().hexString()
+        return self
     }
 
     func SHA1() -> String? {
-        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)?.SHA1().hexString()
+//        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)?.SHA1().hexString()
+        return self
     }
 }

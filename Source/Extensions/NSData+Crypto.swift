@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CommonCrypto
 
 extension NSData {
     func hexString() -> String {
@@ -18,15 +17,15 @@ extension NSData {
         return string
     }
 
-    func MD5() -> NSData {
-        let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
-        CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
-        return NSData(data: result)
-    }
-
-    func SHA1() -> NSData {
-        let result = NSMutableData(length: Int(CC_SHA1_DIGEST_LENGTH))!
-        CC_SHA1(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
-        return NSData(data: result)
-    }
+//    func MD5() -> NSData {
+//        let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
+//        CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
+//        return NSData(data: result)
+//    }
+//
+//    func SHA1() -> NSData {
+//        let result = NSMutableData(length: Int(CC_SHA1_DIGEST_LENGTH))!
+//        CC_SHA1(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
+//        return NSData(data: result)
+//    }
 }
