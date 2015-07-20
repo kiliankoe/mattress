@@ -485,6 +485,9 @@ class DiskCache {
         :returns: The hash.
     */
     func hashForURLString(string: String) -> String? {
-        return string.MD5()
+//        return string.MD5()
+        let toRemove = NSCharacterSet.alphanumericCharacterSet().invertedSet
+        let out = "".join(string.componentsSeparatedByCharactersInSet(toRemove))
+        return out
     }
 }
