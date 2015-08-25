@@ -523,7 +523,7 @@ class DiskCache {
                 string is too long to be used as a disk filename).
             */
             let toRemove = NSCharacterSet.alphanumericCharacterSet().invertedSet
-            return "".join(string.componentsSeparatedByCharactersInSet(toRemove))
+            return string.componentsSeparatedByCharactersInSet(toRemove).joinWithSeparator("")
         }
     }
 }
