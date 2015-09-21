@@ -406,12 +406,14 @@ class DiskCache {
     */
     func diskPathForRequest(request: NSURLRequest) -> NSURL? {
         var url: NSURL?
+        NSLog("hash: %@, baseURL: %@", hashForRequest(request) ?? "", diskPath() ?? "")
+
         if let
             hash = hashForRequest(request),
             baseURL = diskPath()
         {
-            NSLog("stuff not nil")
             url = NSURL(string: hash, relativeToURL: baseURL)
+            NSLog("URL: %@", url ?? "")
         }
         return url
     }
@@ -461,6 +463,7 @@ class DiskCache {
     */
     func hashForRequest(request: NSURLRequest) -> String? {
         if let urlString = request.URL?.absoluteString {
+            NSLog("urlString: %@", urlString)
             return hashForURLString(urlString)
         }
         return nil
@@ -512,9 +515,10 @@ class DiskCache {
         :returns: The hash.
     */
     func hashForURLString(string: String) -> String? {
-        if NSProcessInfo.processInfo().operatingSystemVersion.majorVersion >= 9 {
-            return string.MD5()
-        } else {
+        //NSLog("hash: %@", string.MD5()!)
+        //if NSProcessInfo.processInfo().operatingSystemVersion.majorVersion >= 9 {
+            return string.mattress_MD5()
+        //} else {
             /*
                 CommonCrypto is not behaving properly when the project is
                 built for Alpha (and possibly Release) in iOS 8. As a compromise
@@ -522,8 +526,8 @@ class DiskCache {
                 (this will cause some requests to not get stored because the
                 string is too long to be used as a disk filename).
             */
-            let toRemove = NSCharacterSet.alphanumericCharacterSet().invertedSet
-            return string.componentsSeparatedByCharactersInSet(toRemove).joinWithSeparator("")
-        }
+            //let toRemove = NSCharacterSet.alphanumericCharacterSet().invertedSet
+            //return string.componentsSeparatedByCharactersInSet(toRemove).joinWithSeparator("")
+        //}
     }
 }

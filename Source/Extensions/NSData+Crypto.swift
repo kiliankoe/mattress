@@ -10,21 +10,25 @@ import Foundation
 import CommonCrypto
 
 extension NSData {
-    func hexString() -> String {
+    func mattress_hexString() -> String {
+        NSLog("hexString")
         var string = String()
         for i in UnsafeBufferPointer<UInt8>(start: UnsafeMutablePointer<UInt8>(bytes), count: length) {
-            string += NSString(format:"%02x", i) as String
+            NSLog("hex string fragment: %@", NSString(format:"%02x", i) as String)
+            string += String(format:"%02x", i)
+            NSLog("hex string: %@", string)
         }
         return string
     }
 
-    func MD5() -> NSData {
+    func mattress_MD5() -> NSData {
+        NSLog("NSData.MD5()")
         let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
         CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
         return NSData(data: result)
     }
 
-    func SHA1() -> NSData {
+    func mattress_SHA1() -> NSData {
         let result = NSMutableData(length: Int(CC_SHA1_DIGEST_LENGTH))!
         CC_SHA1(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
         return NSData(data: result)
